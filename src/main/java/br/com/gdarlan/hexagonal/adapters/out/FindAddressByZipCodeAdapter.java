@@ -1,4 +1,4 @@
-package br.com.gdarlan.hexagonal.adapters;
+package br.com.gdarlan.hexagonal.adapters.out;
 
 import br.com.gdarlan.hexagonal.adapters.out.client.FindAddressByZipCodeClient;
 import br.com.gdarlan.hexagonal.adapters.out.client.mapper.AddressResponseMapper;

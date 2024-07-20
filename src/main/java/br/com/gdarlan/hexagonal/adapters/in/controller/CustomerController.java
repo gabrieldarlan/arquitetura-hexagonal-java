@@ -4,6 +4,7 @@ import br.com.gdarlan.hexagonal.adapters.in.controller.mapper.CustomerMapper;
 import br.com.gdarlan.hexagonal.adapters.in.controller.request.CustomerRequest;
 import br.com.gdarlan.hexagonal.adapters.in.controller.response.CustomerResponse;
 import br.com.gdarlan.hexagonal.application.core.domain.Customer;
+import br.com.gdarlan.hexagonal.application.ports.in.DeleteCustomerIdByInputPort;
 import br.com.gdarlan.hexagonal.application.ports.in.FindCustomerByIdInputPort;
 import br.com.gdarlan.hexagonal.application.ports.in.InsertCustomerInputPort;
 import br.com.gdarlan.hexagonal.application.ports.in.UpdateCustomerInputPort;
@@ -26,6 +27,8 @@ public class CustomerController {
     @Autowired
     private UpdateCustomerInputPort updateCustomerInputPort;
 
+    @Autowired
+    private DeleteCustomerIdByInputPort deleteCustomerIdByInputPort;
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CustomerRequest customerRequest) {
@@ -50,4 +53,9 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") final String id) {
+        deleteCustomerIdByInputPort.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
